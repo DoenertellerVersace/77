@@ -1,0 +1,271 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: slategray;
+}
+
+.App > .App-footer {
+    margin-top: auto;
+}
+
+.App-header {
+    padding-left: 10px;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    font-size: calc(4px + 3vmin);
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.App-content-wrapper {
+    margin-outside: 5px;
+}
+
+.App-content {
+    height: 100%;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    overflow-x: hidden;
+    border: dodgerblue;
+    border-radius: 5px;
+    background-color: lightskyblue;
+}
+
+.App-link {
+    color: aquamarine;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    font-size: calc(4px + 5vmin);
+}
+
+.Party-person-row {
+    display: flex;
+    height: 100px;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+img.Bouncy-person1 {
+    animation-name: Bouncy-person1;
+    animation-timing-function: ease;
+}
+
+img.Bouncy-person2 {
+    animation-name: Bouncy-person2;
+    animation-timing-function: ease;
+}
+
+img.Bouncy-person3 {
+    animation-name: Bouncy-person3;
+    animation-timing-function: ease;
+}
+
+img.Jakobs-gesicht {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    margin: 10px 10px 10px 10px;
+}
+
+@keyframes Bouncy-person1 {
+    0% {
+        transform: scale(1, 1) translateY(0) rotate(0);
+    }
+    10% {
+        transform: scale(1.1, .9) translateY(0) rotate(10deg);
+    }
+    30% {
+        transform: scale(.9, 1.1) translateY(-32px) rotate(-20deg);
+    }
+    50% {
+        transform: scale(1, 1) translateY(0) rotate(20deg);
+    }
+    100% {
+        transform: scale(1, 1) translateY(0) rotate(0);
+    }
+}
+
+@keyframes Bouncy-person2 {
+    0% {
+        transform: scale(1, 1) translateY(0) rotate(0);
+    }
+    10% {
+        transform: scale(1.1, .9) translateY(0) rotate(-10deg);
+    }
+    30% {
+        transform: scale(.9, 1.1) translateY(-28px) rotate(15deg);
+    }
+    50% {
+        transform: scale(1, 1) translateY(0) rotate(-15deg);
+    }
+    100% {
+        transform: scale(1, 1) translateY(0) rotate(0);
+    }
+}
+
+@keyframes Bouncy-person3 {
+    0% {
+        transform: scale(1, 1) translateY(0) rotate(0);
+    }
+    10% {
+        transform: scale(1.1, .9) translateY(0) rotate(15deg);
+    }
+    30% {
+        transform: scale(.9, 1.1) translateY(-24px) rotate(-15deg);
+    }
+    50% {
+        transform: scale(1, 1) translateY(0) rotate(5deg);
+    }
+    100% {
+        transform: scale(1, 1) translateY(0) rotate(0);
+    }
+}
+
+.Party-person {
+    width: calc(4px + 5vh);
+    height: calc(4px + 5vh);
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    margin: 0 auto 0 auto;
+    transform-origin: bottom;
+    display: block;
+}
+
+.Plus-minus {
+    flex-direction: column;
+    width: calc(40px + 1vmin);
+    margin-inside: 5px;
+    margin-top: 3.5px;
+    margin-right: 20px;
+}
+
+p {
+    font-size: calc(2px + 3.5vmin);
+}
+
+.card {
+    border-radius: 7px;
+    padding: 10px 10px 10px 10px;
+    margin: 7px 10px 5px 0;
+    background-color: ghostwhite;
+    border: none;
+}
+
+form.card {
+    background-color: lightslategray;
+    border: 2px solid darkslategray;
+    padding-right: 10px;
+}
+
+span.relevant {
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px;
+    font-size: calc(4px + 5vmin);
+    color: black;
+    background-color: dodgerblue;
+    border: 0;
+    border-radius: 5px;
+}
+
+button.Button-submit {
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:disabled {
+    background-color: darkgray;
+    color: dimgray;
+}
+
+button.Change-count {
+    width: 40px;
+    height: 40px;
+    padding: 3.5px;
+    margin: 3.5px;
+}
+
+input.Name {
+    align-content: center;
+    justify-content: center;
+    height: 40px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 0;
+    background-color: ghostwhite; /* Fallback for older browsers */
+    background-color: rgba(248, 248, 255, 0.5);
+    color: dodgerblue;
+    border-bottom: 3px solid black;
+    border-radius: 5px 5px 0 0;
+    font-size: calc(4px + 5vmin);
+}
+
+input:disabled {
+    border-radius: 5px;
+    background-color: darkgray;
+    color: dodgerblue;
+}
+
+@media screen and (max-width: 600px) {
+    .App {
+        height: 100%;
+    }
+
+    .App-header {
+        font-size: calc(4px + 4vmin);
+    }
+
+    .App-content {
+        font-size: calc(4px + 2vmin);
+        height: 100%;
+    }
+
+    .Party-person-row {
+        flex-direction: row;
+        justify-content: left;
+        min-height: 100px;
+    }
+
+    .Party-person-row-item {
+        flex-direction: column;
+        font-size: calc(4px + 6vmin);
+        width: calc(100% - 30px);
+    }
+
+    .Plus-minus {
+        width: calc(40px + 1vmin);
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button.Change-count {
+    }
+
+    h3 {
+        font-size: calc(4px + 6vmin);
+    }
+
+    img {
+    }
+}
+
