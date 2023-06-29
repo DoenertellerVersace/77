@@ -172,7 +172,7 @@ form.card {
     padding-right: 10px;
 }
 
-span.relevant {
+.relevant {
     color: dodgerblue;
     font-weight: bold;
 }

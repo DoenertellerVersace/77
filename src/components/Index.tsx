@@ -34,7 +34,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 
 	return <div className={"App-content"}>
 		<p className={"card"}>
-			ich habe nächste woche geburtstag :)
+			ich habe nächste woche geburtstag 🥳
 		</p>
 		<p className={"card"}>
 			deshalb gibt es am
@@ -45,7 +45,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		<p className={"card"}>
 			damit die nachbarn nicht so lange leiden müssen, fangen wir einfach schon
 			<span className={"relevant"}> um 18 uhr </span>
-			an<br/>
+			an 🎉<br/>
 			es gibt essen und etwas zu trinken, aber bringt gerne auch noch ein getränk mit
 		</p>
 		<p className={"card"}>
@@ -86,7 +86,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		<p className={"card"}>
 			hier findet das statt:
 			<br/>
-			<Link to="https://goo.gl/maps/UcJT9sgUDk9LQtjW6">greifenhagener str. 16, 10437 berlin</Link>
+			<Link className={"relevant"} to="https://goo.gl/maps/UcJT9sgUDk9LQtjW6">greifenhagener str. 16, 10437 berlin</Link>
 		</p>
 		<p className={"card"}>
 			bis dann!
