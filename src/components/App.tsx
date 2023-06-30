@@ -13,6 +13,8 @@ import NotFound from "./NotFound";
 import Index from "./Index";
 import jake from "../assets/jake.png";
 
+const lowerEnd = 1;
+const higherEnd = 5;
 
 export interface AppState {
 	getCount: Function;
@@ -21,11 +23,11 @@ export interface AppState {
 
 export interface AppCallbacks {
 	submit: FormEventHandler;
-	setuser: ChangeEventHandler;
-	substract: MouseEventHandler;
-	add: MouseEventHandler;
-	noplusx: Function;
-	fullplusx: Function;
+	setUser: ChangeEventHandler;
+	decreaseCount: MouseEventHandler;
+	increaseCount: MouseEventHandler;
+	countIsLowerEnd: Function;
+	countIsHigherEnd: Function;
 }
 
 
@@ -34,23 +36,23 @@ function App(): React.JSX.Element {
 	const [count, setCount]: [number, Dispatch<number>] = useState(1);
 	const [user, setUser]: [string, Dispatch<SetStateAction<string>>] = useState("");
 
-	const noplusx: Function = () => {
-		return count === 1;
+	const countIsLowerEnd: Function = () => {
+		return count <= lowerEnd;
 	}
 
-	const fullplusx: Function = () => {
-		return count > 4;
+	const countIsHigherEnd: Function = () => {
+		return count >= higherEnd;
 	}
 
-	const subtract: MouseEventHandler = (ignored: any) => {
-		if (noplusx()) {
+	const decreaseCount: MouseEventHandler = (ignored: any) => {
+		if (countIsLowerEnd()) {
 			return;
 		}
 		setCount(count - 1);
 	}
 
-	const add: MouseEventHandler = (ignored: any) => {
-		if (fullplusx()) {
+	const increaseCount: MouseEventHandler = (ignored: any) => {
+		if (countIsHigherEnd()) {
 			return;
 		}
 		setCount(count + 1);
@@ -69,11 +71,11 @@ function App(): React.JSX.Element {
 
 	const callbacks: AppCallbacks = {
 		submit: handleSubmit,
-		setuser: setuser,
-		substract: subtract,
-		add: add,
-		noplusx: noplusx,
-		fullplusx: fullplusx
+		setUser: setuser,
+		decreaseCount: decreaseCount,
+		increaseCount: increaseCount,
+		countIsLowerEnd: countIsLowerEnd,
+		countIsHigherEnd: countIsHigherEnd
 	}
 
 	const state: AppState = {

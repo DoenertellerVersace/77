@@ -15,7 +15,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			personRow.push(
 					<img key={i}
 							 src={person}
-							 className={"Party-person Bouncy-person" + Math.round((Math.random() + 1) * 1.5)}
+							 className={"Party-person Bouncy-person" + Math.round(Math.random() * 3)}
 							 height={"40px"}
 							 width={"40px"}
 							 alt={"person"}/>
@@ -24,11 +24,11 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		return personRow;
 	};
 
-	const onBlur = (ignored: any) => {
-		setPlaceholder("name")
+	const inputOnBlur = (ignored: any) => {
+		setPlaceholder("name...")
 	};
 
-	const onFocus = (ignored: any) => {
+	const inputOnFocus = (ignored: any) => {
 		setPlaceholder("")
 	}
 
@@ -49,7 +49,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			es gibt essen und etwas zu trinken, aber bringt gerne auch noch ein getränk mit
 		</p>
 		<p className={"card"}>
-			wer kommen möchte, kann hier (s)einen namen eintragen und gerne auch +x personen anmelden:
+			wer kommen möchte, kann hier (s)einen namen eintragen und gerne auch +x personen mitbringen
 		</p>
 		<form onSubmit={callbacks.submit} className={"Form card"} autoComplete={"off"}>
 			<div className={"Form-row"}>
@@ -57,28 +57,30 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 							 type={"text"}
 							 name={"name"}
 							 id={"name"}
-							 onChange={callbacks.setuser}
+							 onChange={callbacks.setUser}
 							 placeholder={placeholder}
-							 onFocus={onFocus}
-							 onBlur={onBlur}
+							 onFocus={inputOnFocus}
+							 onBlur={inputOnBlur}
 							 autoComplete={"off"}/>
 			</div>
 			<div className={"Party-person-row"}>
 				<div className={"Plus-minus"}>
-					<button className={"Change-count"} type={"button"} disabled={callbacks.fullplusx()}
-									onClick={callbacks.add}> +
+					<button className={"Change-count"} type={"button"} disabled={callbacks.countIsHigherEnd()}
+									onClick={callbacks.increaseCount}> +
 					</button>
-					<button className={"Change-count"} type={"button"} disabled={callbacks.noplusx()}
-									onClick={callbacks.substract}> -
+					<button className={"Change-count"} type={"button"} disabled={callbacks.countIsLowerEnd()}
+									onClick={callbacks.decreaseCount}> -
 					</button>
 				</div>
-				{getPersons()}
+				<div className={"Party-persons"}>
+					{getPersons()}
+				</div>
 			</div>
 			<div className={"Form-row"}>
 				<div className={"Form-row-item"}>
 					<button className={"Button-submit"}
 									disabled={state.getUser() === ""}
-									type={"submit"}>{callbacks.noplusx() ? "ich komme" : "wir kommen"} vorbei
+									type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei
 					</button>
 				</div>
 			</div>
@@ -86,7 +88,8 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		<p className={"card"}>
 			hier findet das statt:
 			<br/>
-			<Link className={"relevant"} to="https://goo.gl/maps/UcJT9sgUDk9LQtjW6">greifenhagener str. 16, 10437 berlin</Link>
+			<Link className={"relevant"} to="https://goo.gl/maps/UcJT9sgUDk9LQtjW6">greifenhagener str. 16, 10437
+				berlin</Link>
 		</p>
 		<p className={"card"}>
 			bis dann!
