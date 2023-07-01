@@ -15,7 +15,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			personRow.push(
 					<img key={i}
 							 src={person}
-							 className={"Party-person Bouncy-person" + Math.round(Math.random() * 3)}
+							 className={"Party-person Bouncy-person" + Math.round(Math.random() * 2) + 1}
 							 height={"40px"}
 							 width={"40px"}
 							 alt={"person"}/>
@@ -34,18 +34,18 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 
 	return <div className={"App-content"}>
 		<p className={"card"}>
-			ich habe nächste woche geburtstag 🥳
+			ich habe diese woche geburtstag 🥳
 		</p>
 		<p className={"card"}>
-			deshalb gibt es am
-			<span className={"relevant"}> nächsten freitag (7. juli) </span>
+			deshalb gibt es
+			<span className={"relevant"}> am freitag (7. juli) </span>
 			eine party<br/>
 			ich freue mich wenn ihr vorbeikommt!
 		</p>
 		<p className={"card"}>
 			damit die nachbarn nicht so lange leiden müssen, fangen wir einfach schon
 			<span className={"relevant"}> um 18 uhr </span>
-			an 🎉<br/>
+			an<br/>
 			es gibt essen und etwas zu trinken, aber bringt gerne auch noch ein getränk mit
 		</p>
 		<p className={"card"}>
@@ -80,19 +80,14 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 				<div className={"Form-row-item"}>
 					<button className={"Button-submit"}
 									disabled={state.getUser() === ""}
-									type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei
+									type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei 🎉
 					</button>
 				</div>
 			</div>
 		</form>
 		<p className={"card"}>
-			hier findet das statt:
-			<br/>
-			<Link className={"relevant"} to="https://goo.gl/maps/UcJT9sgUDk9LQtjW6">greifenhagener str. 16, 10437
-				berlin</Link>
-		</p>
-		<p className={"card"}>
-			bis dann!
+			das ganze findet bei mir und max zuhause statt, wer nicht weiß wo das ist darf mir schreiben<br/>
+			bis freitag!
 		</p>
 	</div>;
 }
