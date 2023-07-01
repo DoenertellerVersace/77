@@ -86,7 +86,9 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			</div>
 		</form>
 		<p className={"card"}>
-			das ganze findet bei mir und max zuhause statt, wer nicht weiß wo das ist darf mir schreiben<br/>
+			das ganze findet bei mir und max zuhause statt, wer nicht weiß wo das ist darf mir schreiben
+		</p>
+		<p className={"card"}>
 			bis freitag!
 		</p>
 	</div>;
