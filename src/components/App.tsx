@@ -7,8 +7,8 @@ import React, {
 	SetStateAction,
 	useState
 } from 'react';
-import '../assets/App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import '../assets/App.css';
 import NotFound from "./NotFound";
 import Index from "./Index";
 import jake from "../assets/jake.png";

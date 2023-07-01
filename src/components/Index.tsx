@@ -1,5 +1,4 @@
 import React, {Dispatch, useState} from "react";
-import {Link} from "react-router-dom";
 import {AppCallbacks, AppState} from "./App";
 import person from "../assets/person.png";
 
@@ -15,7 +14,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			personRow.push(
 					<img key={i}
 							 src={person}
-							 className={"Party-person Bouncy-person" + Math.round(Math.random() * 2) + 1}
+							 className={"Party-person Bouncy-person" + Math.round((Math.random() + 1) * 1.5)}
 							 height={"40px"}
 							 width={"40px"}
 							 alt={"person"}/>
@@ -86,7 +85,8 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			</div>
 		</form>
 		<p className={"card"}>
-			das ganze findet <span className={"relevant"}> bei mir zuhause </span>  statt, wer nicht weiß wo das ist darf mich gerne fragen
+			das ganze findet <span className={"relevant"}> bei mir zuhause </span> statt, wer nicht weiß wo das ist darf mich
+			gerne fragen
 		</p>
 		<p className={"card"}>
 			bis freitag!
