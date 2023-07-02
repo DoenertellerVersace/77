@@ -177,11 +177,13 @@ p {
     border: none;
 }
 
-form.card {
+.Form-card {
     background-color: lightslategray;
     border: 2px solid darkslategray;
     padding-right: 10px;
 }
+
+
 
 .relevant {
     color: dodgerblue;

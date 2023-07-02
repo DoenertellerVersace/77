@@ -7,6 +7,7 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 	let state: AppState = props.state;
 	let callbacks: AppCallbacks = props.callbacks;
 	const [placeholder, setPlaceholder]: [string, Dispatch<string>] = useState("name");
+	const [submitted, setSubmitted]: [boolean, Dispatch<boolean>] = useState(false);
 
 	const getPersons: Function = () => {
 		const personRow: React.JSX.Element[] = [];
@@ -21,15 +22,20 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			);
 		}
 		return personRow;
-	};
 
+	};
 	const inputOnBlur = (ignored: any) => {
 		setPlaceholder("name...")
-	};
 
+	};
 	const inputOnFocus = (ignored: any) => {
 		setPlaceholder("")
 	}
+
+	const doSubmit = (e: any) => {
+		callbacks.submit(e);
+		setSubmitted(true);
+	};
 
 	return <div className={"App-content"}>
 		<p className={"card"}>
@@ -50,40 +56,48 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		<p className={"card"}>
 			wer kommen möchte, kann hier (s)einen namen eintragen und gerne auch +x personen mitbringen
 		</p>
-		<form onSubmit={callbacks.submit} className={"Form card"} autoComplete={"off"}>
-			<div className={"Form-row"}>
-				<input className={"Name"}
-							 type={"text"}
-							 name={"name"}
-							 id={"name"}
-							 onChange={callbacks.setUser}
-							 placeholder={placeholder}
-							 onFocus={inputOnFocus}
-							 onBlur={inputOnBlur}
-							 autoComplete={"off"}/>
-			</div>
-			<div className={"Party-person-row"}>
-				<div className={"Plus-minus"}>
-					<button className={"Change-count"} type={"button"} disabled={callbacks.countIsHigherEnd()}
-									onClick={callbacks.increaseCount}> +
-					</button>
-					<button className={"Change-count"} type={"button"} disabled={callbacks.countIsLowerEnd()}
-									onClick={callbacks.decreaseCount}> -
-					</button>
-				</div>
-				<div className={"Party-persons"}>
-					{getPersons()}
-				</div>
-			</div>
-			<div className={"Form-row"}>
-				<div className={"Form-row-item"}>
-					<button className={"Button-submit"}
-									disabled={state.getUser() === ""}
-									type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei 🎉
-					</button>
-				</div>
-			</div>
-		</form>
+		{submitted ?
+				<p className={"Form-card card"}>
+					<div className={".Party-persons"}>
+						OK, {state.getUser()} {getPersons()} lets party 🎉
+					</div>
+				</p>
+				:
+				<form onSubmit={doSubmit} className={"Form-card card"} autoComplete={"off"}>
+					<div className={"Form-row"}>
+						<input className={"Name"}
+									 type={"text"}
+									 name={"name"}
+									 id={"name"}
+									 onChange={callbacks.setUser}
+									 placeholder={placeholder}
+									 onFocus={inputOnFocus}
+									 onBlur={inputOnBlur}
+									 autoComplete={"off"}/>
+					</div>
+					<div className={"Party-person-row"}>
+						<div className={"Plus-minus"}>
+							<button className={"Change-count"} type={"button"} disabled={callbacks.countIsHigherEnd()}
+											onClick={callbacks.increaseCount}> +
+							</button>
+							<button className={"Change-count"} type={"button"} disabled={callbacks.countIsLowerEnd()}
+											onClick={callbacks.decreaseCount}> -
+							</button>
+						</div>
+						<div className={"Party-persons"}>
+							{getPersons()}
+						</div>
+					</div>
+					<div className={"Form-row"}>
+						<div className={"Form-row-item"}>
+							<button className={"Button-submit"}
+											disabled={state.getUser() === ""}
+											type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei 🎉
+							</button>
+						</div>
+					</div>
+				</form>
+		}
 		<p className={"card"}>
 			das ganze findet <span className={"relevant"}> bei mir zuhause </span> statt, wer nicht weiß wo das ist darf mich
 			gerne fragen
