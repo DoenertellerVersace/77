@@ -57,11 +57,17 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 			wer kommen möchte, kann hier (s)einen namen eintragen und gerne auch +x personen mitbringen
 		</p>
 		{submitted ?
-				<p className={"Form-card card"}>
-					<div className={".Party-persons"}>
-						OK, {state.getUser()} {getPersons()} lets party 🎉
+				<div className={"Form-card card"}>
+					<div className={"line"}>
+						<span className={"field"}>OK, {state.getUser()}</span>
+						<div className={"Party-persons result"}>
+							{getPersons()}
+						</div>
+						<span className={"field"}>
+								lets party 🎉
+							</span>
 					</div>
-				</p>
+				</div>
 				:
 				<form onSubmit={doSubmit} className={"Form-card card"} autoComplete={"off"}>
 					<div className={"Form-row"}>

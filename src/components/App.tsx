@@ -70,9 +70,13 @@ function App(): React.JSX.Element {
 		event.preventDefault();
 		console.log(`submitting form with user: ${user}`);
 		console.log(`submitting form with count: ${count}`);
-		fetch(`http://ohmygit.de:8000/set/${user}/to/${count}`,
-		).then((response: any) => {
-			console.log(response);
+		fetch(`https://www.ohmygit.de:4711/set/${user}/to/${count}`,
+		).then((response: Response) => {
+			console.log(response.blob().then((data: globalThis.Blob) => {
+				console.log(data.text().then((text: string) => {
+					console.log(text);
+				}));
+			}));
 		}).catch((error: any) => {
 			console.log(error);
 		});

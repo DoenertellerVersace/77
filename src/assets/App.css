@@ -70,6 +70,10 @@
     flex-direction: row;
 }
 
+.result {
+    width: fit-content;
+}
+
 img.Bouncy-person1 {
     animation-name: Bouncy-person1;
     animation-timing-function: ease;
@@ -167,6 +171,27 @@ img.Jakobs-gesicht {
 
 p {
     font-size: calc(2px + 3.5vmin);
+}
+
+div.line {
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    font-size: calc(2px + 3.5vmin);
+}
+
+.field {
+    width: max-content;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    display: flex;
+}
+
+.field-end {
+    align-self: flex-end;
 }
 
 .card {
@@ -281,6 +306,10 @@ input:placeholder-shown {
     .Party-persons {
         padding-left: 10px;
         width: calc(100% - 40px);
+    }
+
+    .result {
+        width: fit-content;
     }
 
     img.Party-person {
