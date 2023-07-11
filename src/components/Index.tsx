@@ -1,4 +1,4 @@
-import React, {Dispatch, useState} from "react";
+import React, {Dispatch, MouseEvent, MouseEventHandler, useState} from "react";
 import {AppCallbacks, AppState} from "./App";
 import person from "../assets/person.png";
 
@@ -37,6 +37,16 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		setSubmitted(true);
 	};
 
+	const onIncreaseClick: MouseEventHandler = (e: MouseEvent) => {
+		callbacks.increaseCount(e);
+		callbacks.submit(e);
+	};
+
+	const onDecreaseClick: MouseEventHandler = (e: MouseEvent) => {
+		callbacks.decreaseCount(e);
+		callbacks.submit(e);
+	};
+
 	return <div className={"App-content"}>
 		<p className={"card"}>
 			ich habe diese woche geburtstag 🥳
@@ -56,53 +66,58 @@ function Index(props: { state: AppState; callbacks: AppCallbacks }): React.JSX.E
 		<p className={"card"}>
 			wer kommen möchte, kann hier (s)einen namen eintragen und gerne auch +x personen mitbringen
 		</p>
-		{submitted ?
-				<div className={"Form-card card"}>
-					<div className={"line"}>
-						<span className={"field"}>OK, {state.getUser()}</span>
-						<div className={"Party-persons result"}>
+		<form onSubmit={doSubmit} className={"Form-card card"} autoComplete={"off"}>
+			<div className={"Form-row"}>
+				<input className={"Name"}
+							 type={"text"}
+							 name={"name"}
+							 id={"name"}
+							 onChange={callbacks.setUser}
+							 placeholder={placeholder}
+							 onFocus={inputOnFocus}
+							 onBlur={inputOnBlur}
+							 autoComplete={"off"}/>
+			</div>
+
+			<div className={"Party-person-row"}>
+				<div className={"Plus-minus"}>
+					<button className={"Change-count"} type={"button"} disabled={callbacks.countIsHigherEnd()}
+									onClick={onIncreaseClick}> +
+					</button>
+					<button className={"Change-count"} type={"button"} disabled={callbacks.countIsLowerEnd()}
+									onClick={onDecreaseClick}> -
+					</button>
+				</div>
+				{submitted ||
+            <div className={"Party-persons"}>
 							{getPersons()}
-						</div>
-						<span className={"field"}>
+            </div>
+				}
+			</div>
+
+			<div className={"Form-row"}>
+				<div className={"Form-row-item"}>
+					<button className={"Button-submit"}
+									disabled={state.getUser() === ""}
+									type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei 🎉
+					</button>
+				</div>
+			</div>
+		</form>
+
+		{submitted &&
+        <div className={"Form-card card"}>
+            <div className={"line"}>
+                <span className={"field"}>OK, {state.getUser()}</span>
+                <div className={"Party-persons result"}>
+									{getPersons()}
+                </div>
+                <span className={"field"}>
 								lets party 🎉
 							</span>
-					</div>
-				</div>
-				:
-				<form onSubmit={doSubmit} className={"Form-card card"} autoComplete={"off"}>
-					<div className={"Form-row"}>
-						<input className={"Name"}
-									 type={"text"}
-									 name={"name"}
-									 id={"name"}
-									 onChange={callbacks.setUser}
-									 placeholder={placeholder}
-									 onFocus={inputOnFocus}
-									 onBlur={inputOnBlur}
-									 autoComplete={"off"}/>
-					</div>
-					<div className={"Party-person-row"}>
-						<div className={"Plus-minus"}>
-							<button className={"Change-count"} type={"button"} disabled={callbacks.countIsHigherEnd()}
-											onClick={callbacks.increaseCount}> +
-							</button>
-							<button className={"Change-count"} type={"button"} disabled={callbacks.countIsLowerEnd()}
-											onClick={callbacks.decreaseCount}> -
-							</button>
-						</div>
-						<div className={"Party-persons"}>
-							{getPersons()}
-						</div>
-					</div>
-					<div className={"Form-row"}>
-						<div className={"Form-row-item"}>
-							<button className={"Button-submit"}
-											disabled={state.getUser() === ""}
-											type={"submit"}>{callbacks.countIsLowerEnd() ? "ich komme" : "wir kommen"} vorbei 🎉
-							</button>
-						</div>
-					</div>
-				</form>
+            </div>
+        </div>
+
 		}
 		<p className={"card"}>
 			das ganze findet <span className={"relevant"}> bei mir zuhause </span> statt, wer nicht weiß wo das ist darf mich

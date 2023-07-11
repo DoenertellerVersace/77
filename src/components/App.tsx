@@ -13,6 +13,7 @@ import '../assets/App.css';
 import NotFound from "./NotFound";
 import Index from "./Index";
 import jake from "../assets/jake.png";
+import {Game} from "./Game";
 
 const lowerEnd = 1;
 const higherEnd = 5;
@@ -30,7 +31,6 @@ export interface AppCallbacks {
 	increaseCount: MouseEventHandler;
 	countIsLowerEnd: Function;
 	countIsHigherEnd: Function;
-	changeInputs: Function;
 }
 
 
@@ -89,7 +89,6 @@ function App(): React.JSX.Element {
 		increaseCount: increaseCount,
 		countIsLowerEnd: countIsLowerEnd,
 		countIsHigherEnd: countIsHigherEnd,
-		changeInputs: changeInputs,
 	}
 
 	const state: AppState = {
@@ -109,6 +108,7 @@ function App(): React.JSX.Element {
 					<BrowserRouter>
 						<Routes>
 							<Route key={0} path={"/"} element={<Index callbacks={callbacks} state={state}/>}/>
+							<Route key={0} path={"/"} element={<Game callbacks={callbacks} state={state}/>}/>
 							<Route key={2} path={"*"} element={<NotFound/>}/>
 						</Routes>
 					</BrowserRouter>
