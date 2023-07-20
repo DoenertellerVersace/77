@@ -13,14 +13,14 @@ const root: Root = ReactDOM.createRoot(
 );
 
 let state: {
-	count: Function | undefined ;
+	count: () => number ;
 	counter: number;
 	user: null;
 } = {
 
 	user: null,
 	counter: 1,
-	count: undefined,
+	count: () => 1,
 
 }
 
@@ -73,7 +73,7 @@ function assembleViews(): ({
 					<p className={"Form-row"}>
 						<input type="text" name="name" id="name"/>
 						<button type="button" disabled={noplusx()} onClick={subtract}>-</button>
-						<div>{state.count()}</div>
+						<div>{state.counter}</div>
 						<button type="button" onClick={add}>+</button>
 					</p>
 					<button type="submit">anmelden</button>
